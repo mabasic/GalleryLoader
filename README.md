@@ -55,3 +55,13 @@ GalleryLoader::getImages(public_path() . '/img/slideshow')
 ```
 GalleryLoader::getImages(public_path() . '/img/slideshow', ['thumb', 'small', 'thumbnail'])
 ```
+
+### Helpers
+
+#### `getImageNameWithPrefix($prefix, SplFileInfo $image)`
+
+`image.png` with prefix `thumb_` transforms to `thumb_image.png`.
+
+#### `getImageNameWithSuffix(SplFileInfo $image, $suffix)`
+
+`image.png` with suffix `_thumb` transforms to `image_thumb.png`.

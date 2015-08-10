@@ -32,7 +32,7 @@ class GalleryLoader
         // TODO: Return only images
 
         if (!is_null($ignoreWords)) {
-            $files = $this->removeFilesThatContainIgnoreWords($files, $ignoreWords);
+            $files = $this->removeImagesThatContainIgnoreWords($files, $ignoreWords);
         }
 
         sort($files);
@@ -41,23 +41,45 @@ class GalleryLoader
     }
 
     /**
-     * Remove files that contain ignore words from the list of files.
+     * Remove images that contain ignore words from the list of images.
      *
-     * @param $files
+     * @param $images
      * @param $ignoreWords
-     * @return mixed
+     * @return images
      */
-    private function removeFilesThatContainIgnoreWords(array $files, array $ignoreWords)
+    private function removeImagesThatContainIgnoreWords(array $images, array $ignoreWords)
     {
-        return $files = array_filter($files, function (SplFileInfo $file) use ($ignoreWords) {
+        return $images = array_filter($images, function (SplFileInfo $image) use ($ignoreWords) {
             foreach ($ignoreWords as $ignoreWord) {
-                // If ignore word is found in filename remove that file from files
-                if (strpos($file->getFilename(), $ignoreWord) !== false) {
+                // If ignore word is found in filename remove that image from images
+                if (strpos($image->getFilename(), $ignoreWord) !== false) {
                     return false;
                 }
             }
 
             return true;
         });
+    }
+
+    /**
+     * It returns image name with a prefix.
+     *
+     * @param $prefix
+     * @param SplFileInfo $image
+     */
+    public function getImageNameWithPrefix($prefix, SplFileInfo $image)
+    {
+        return $image->getPath() . '/' . $prefix . $image->getBasename();
+    }
+
+    /**
+     * It returns image name with a suffix before the extension.
+     *
+     * @param SplFileInfo $image
+     * @param $suffix
+     */
+    public function getImageNameWithSuffix(SplFileInfo $image, $suffix)
+    {
+        return $image->getPath() . '/' . $image->getBasename('.' . $image->getExtension()) . $suffix . '.' . $image->getExtension();
     }
 }

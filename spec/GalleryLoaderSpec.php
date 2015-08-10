@@ -23,7 +23,7 @@ class GalleryLoaderSpec extends ObjectBehavior
     {
         $filesystem->allFiles('/images-empty')->willReturn([]);
 
-        $files = $this->createDummyFilesFromArray(['image.png', 'image2.png']);
+        $files = $this->createDummyFilesFromArray(['image.png', 'image2.png', 'test/image34.jpg']);
         $filesystem->allFiles('/images')->willReturn($files);
 
         $this->beConstructedWith($filesystem);
@@ -36,7 +36,7 @@ class GalleryLoaderSpec extends ObjectBehavior
 
     function it_returns_an_array_with_images()
     {
-        $this->getImages('/images')->shouldHaveCount(2);
+        $this->getImages('/images')->shouldHaveCount(3);
 
         $this->getImages('/images-empty')->shouldHaveCount(0);
     }
@@ -44,6 +44,20 @@ class GalleryLoaderSpec extends ObjectBehavior
     function it_returns_an_array_with_images_that_do_not_contain_ignore_words()
     {
         $ignoreWords = ['2'];
-        $this->getImages('/images', $ignoreWords)->shouldHaveCount(1);
+        $this->getImages('/images', $ignoreWords)->shouldHaveCount(2);
+    }
+
+    function it_returns_image_name_with_a_prefix()
+    {
+        $image = new SplFileInfo('image.png');
+
+        $this->getImageNameWithPrefix('large_', $image)->shouldReturn('/large_image.png');
+    }
+
+    function it_returns_image_name_with_a_suffix()
+    {
+        $image = new SplFileInfo('image.png');
+
+        $this->getImageNameWithSuffix($image, '_large')->shouldReturn('/image_large.png');
     }
 }
