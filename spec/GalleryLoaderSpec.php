@@ -62,4 +62,25 @@ class GalleryLoaderSpec extends ObjectBehavior
 
         $this->getImageNameWithSuffix($image, '_large')->shouldMatch('/image_large.png/');
     }
+
+    public function it_returns_image_url()
+    {
+        $image = new SplFileInfo('image.png', '', 'image.png');
+
+        $this->getImage($image, 'img/slideshow/')->shouldReturn('/img/slideshow/image.png');
+    }
+
+    public function it_returns_image_url_with_suffix()
+    {
+        $image = new SplFileInfo('image.png', '', 'image.png');
+
+        $this->getImageWithSuffix($image, '_thumb', 'img/slideshow/')->shouldReturn('/img/slideshow/image_thumb.png');
+    }
+
+    public function it_returns_image_url_with_prefix()
+    {
+        $image = new SplFileInfo('image.png', '', 'image.png');
+
+        $this->getImageWithPrefix($image, 'large_', 'img/slideshow/')->shouldReturn('/img/slideshow/large_image.png');
+    }
 }

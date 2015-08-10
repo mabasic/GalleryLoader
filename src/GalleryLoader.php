@@ -82,4 +82,37 @@ class GalleryLoader
     {
         return $image->getRelativePath() . $image->getBasename('.' . $image->getExtension()) . $suffix . '.' . $image->getExtension();
     }
+
+    /**
+     * Returns URL for image with suffix.
+     *
+     * @param SplFileInfo $image
+     * @param $folder
+     */
+    public function getImageWithSuffix(SplFileInfo $image, $suffix, $folder)
+    {
+        return '/' . $folder . $this->getImageNameWithSuffix($image, $suffix);
+    }
+
+    /**
+     * Returns URL for image with prefix.
+     *
+     * @param SplFileInfo $image
+     * @param $folder
+     */
+    public function getImageWithPrefix(SplFileInfo $image, $prefix, $folder)
+    {
+        return '/' . $folder . $this->getImageNameWithPrefix($prefix, $image);
+    }
+
+    /**
+     * Returns URL for image.
+     *
+     * @param SplFileInfo $image
+     * @param $folder
+     */
+    public function getImage(SplFileInfo $image, $folder)
+    {
+        return '/' . $folder . $image->getRelativePathname();
+    }
 }
