@@ -51,13 +51,13 @@ class GalleryLoaderSpec extends ObjectBehavior
     {
         $image = new SplFileInfo('image.png');
 
-        $this->getImageNameWithPrefix('large_', $image)->shouldReturn('/large_image.png');
+        $this->getImageNameWithPrefix('large_', $image)->shouldMatch('/large_image.png/');
     }
 
     function it_returns_image_name_with_a_suffix()
     {
         $image = new SplFileInfo('image.png');
 
-        $this->getImageNameWithSuffix($image, '_large')->shouldReturn('/image_large.png');
+        $this->getImageNameWithSuffix($image, '_large')->shouldMatch('/image_large.png/');
     }
 }
