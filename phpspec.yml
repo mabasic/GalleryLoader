@@ -1,0 +1,6 @@
+suites:
+    gallery_loader_suite:
+        namespace: Mabasic\GalleryLoader
+        psr4_prefix: Mabasic\GalleryLoader
+        src_path: src
+        spec_prefix: spec
