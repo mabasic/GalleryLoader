@@ -1,5 +1,7 @@
 # Gallery Loader
 
+[![Build Status](https://travis-ci.org/mabasic/GalleryLoader.svg)](https://travis-ci.org/mabasic/GalleryLoader) 
+
 Laravel facade that gets images from a folder sorted by  filename and filtered.
 
 > This is just a simple wrapper for functionality that I use across many projects.
