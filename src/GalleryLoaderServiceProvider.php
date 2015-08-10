@@ -1,6 +1,9 @@
-<?php namespace Mabasic\GalleryLoader\GalleryLoaderProvider;
+<?php
+
+namespace Mabasic\GalleryLoader;
 
 use Illuminate\Support\ServiceProvider;
+
 //use Mabasic\GalleryLoader\GalleryLoader;
 
 class GalleryLoaderServiceProvider extends ServiceProvider
