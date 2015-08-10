@@ -4,8 +4,7 @@ namespace spec\Mabasic\GalleryLoader;
 
 use Illuminate\Filesystem\Filesystem;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-use SplFileInfo;
+use Symfony\Component\Finder\SplFileInfo;
 
 class GalleryLoaderSpec extends ObjectBehavior
 {
@@ -14,12 +13,13 @@ class GalleryLoaderSpec extends ObjectBehavior
      */
     private function createDummyFilesFromArray(array $wannabeFiles)
     {
-        return array_map(function($wannabeFile) {
-            return new SplFileInfo($wannabeFile);
+        return array_map(function ($wannabeFile) {
+            // File, RelativePath, RelativePathname
+            return new SplFileInfo($wannabeFile, '', $wannabeFile);
         }, $wannabeFiles);
     }
 
-    function let(Filesystem $filesystem)
+    public function let(Filesystem $filesystem)
     {
         $filesystem->allFiles('/images-empty')->willReturn([]);
 
@@ -29,34 +29,36 @@ class GalleryLoaderSpec extends ObjectBehavior
         $this->beConstructedWith($filesystem);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Mabasic\GalleryLoader\GalleryLoader');
     }
 
-    function it_returns_an_array_with_images()
+    public function it_returns_an_array_with_images()
     {
         $this->getImages('/images')->shouldHaveCount(3);
 
         $this->getImages('/images-empty')->shouldHaveCount(0);
     }
 
-    function it_returns_an_array_with_images_that_do_not_contain_ignore_words()
+    public function it_returns_an_array_with_images_that_do_not_contain_ignore_words()
     {
         $ignoreWords = ['2'];
         $this->getImages('/images', $ignoreWords)->shouldHaveCount(2);
     }
 
-    function it_returns_image_name_with_a_prefix()
+    public function it_returns_image_name_with_a_prefix()
     {
-        $image = new SplFileInfo('image.png');
+        // File, RelativePath, RelativePathname
+        $image = new SplFileInfo('image.png', '', 'image.png');
 
         $this->getImageNameWithPrefix('large_', $image)->shouldMatch('/large_image.png/');
     }
 
-    function it_returns_image_name_with_a_suffix()
+    public function it_returns_image_name_with_a_suffix()
     {
-        $image = new SplFileInfo('image.png');
+        // File, RelativePath, RelativePathname
+        $image = new SplFileInfo('image.png', '', 'image.png');
 
         $this->getImageNameWithSuffix($image, '_large')->shouldMatch('/image_large.png/');
     }

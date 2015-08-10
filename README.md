@@ -65,3 +65,18 @@ GalleryLoader::getImages(public_path() . '/img/slideshow', ['thumb', 'small', 't
 #### `getImageNameWithSuffix(SplFileInfo $image, $suffix)`
 
 `image.png` with suffix `_thumb` transforms to `image_thumb.png`.
+
+### Real World Example
+
+```
+<ul class="slides">
+    @foreach(GalleryLoader::getImages(public_path($folder = 'img/paddle/slider/'), ['large']) as $image)
+    <li>
+        <a href="{{ asset($folder . GalleryLoader::getImageNameWithSuffix($image, '_large')) }}"
+            rel="fancybox-gallery" title="{{ $image->getFilename() }}">
+            <img src="{{ asset($folder . $image->getRelativePathname()) }}" alt="{{ $image->getFilename() }}" />
+        </a>
+    </li>
+    @endforeach
+</ul>
+```

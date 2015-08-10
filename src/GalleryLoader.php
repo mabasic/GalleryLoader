@@ -3,7 +3,7 @@
 namespace Mabasic\GalleryLoader;
 
 use Illuminate\Filesystem\Filesystem;
-use SplFileInfo;
+use Symfony\Component\Finder\SplFileInfo;
 
 class GalleryLoader
 {
@@ -69,7 +69,7 @@ class GalleryLoader
      */
     public function getImageNameWithPrefix($prefix, SplFileInfo $image)
     {
-        return $image->getPath() . '/' . $prefix . $image->getBasename();
+        return $image->getRelativePath() . $prefix . $image->getBasename();
     }
 
     /**
@@ -80,6 +80,6 @@ class GalleryLoader
      */
     public function getImageNameWithSuffix(SplFileInfo $image, $suffix)
     {
-        return $image->getPath() . '/' . $image->getBasename('.' . $image->getExtension()) . $suffix . '.' . $image->getExtension();
+        return $image->getRelativePath() . $image->getBasename('.' . $image->getExtension()) . $suffix . '.' . $image->getExtension();
     }
 }
