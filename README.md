@@ -1,6 +1,6 @@
 # Gallery Loader
 
-[![Build Status](https://travis-ci.org/mabasic/GalleryLoader.svg)](https://travis-ci.org/mabasic/GalleryLoader) 
+[![Build Status](https://travis-ci.org/mabasic/GalleryLoader.svg)](https://travis-ci.org/mabasic/GalleryLoader) [![Latest Stable Version](https://poser.pugx.org/mabasic/gallery-loader/v/stable)](https://packagist.org/packages/mabasic/gallery-loader) [![Total Downloads](https://poser.pugx.org/mabasic/gallery-loader/downloads)](https://packagist.org/packages/mabasic/gallery-loader) [![Latest Unstable Version](https://poser.pugx.org/mabasic/gallery-loader/v/unstable)](https://packagist.org/packages/mabasic/gallery-loader) [![License](https://poser.pugx.org/mabasic/gallery-loader/license)](https://packagist.org/packages/mabasic/gallery-loader)
 
 Laravel facade that gets images from a folder sorted by  filename and filtered.
 
@@ -11,7 +11,7 @@ It enables you to easily grabs images from a folder and create a image gallery.
 ## Installation
 
 From project root type:
-
+ 
 ```
 composer require mabasic/gallery-loader
 ```
