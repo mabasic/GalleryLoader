@@ -1,8 +1,10 @@
-<?php namespace Mabasic\GalleryLoader\Facades\GalleryLoader;
+<?php
+
+namespace Mabasic\GalleryLoader\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class GalleryLoaderFacade extends Facade {
+class GalleryLoader extends Facade {
 
     protected static function getFacadeAccessor()
     {
